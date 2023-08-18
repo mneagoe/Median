@@ -16,6 +16,8 @@ export class ArticlesService {
   }
 
   findAll() {
+    console.log(process.env.JWT_SECRET);
+
     return this.prisma.article.findMany({ where: { published: true } });
   }
 

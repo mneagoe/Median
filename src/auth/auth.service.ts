@@ -14,7 +14,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<AuthEntity> {
     const user = await this.prisma.user.findUnique({
-      where: { email, password },
+      where: { email },
     });
 
     if (!user)

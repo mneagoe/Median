@@ -6,9 +6,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import { UsersModule } from 'src/users/users.module';
-
-// $ openssl rand -base64 32
-export const jwtSecret = '+vHKgdi27rrJ/UKLl+XjyWqVi9FLj9QVe/bfkOEFISI=';
+import { env } from 'src/config';
 
 @Module({
   controllers: [AuthController],
@@ -17,8 +15,8 @@ export const jwtSecret = '+vHKgdi27rrJ/UKLl+XjyWqVi9FLj9QVe/bfkOEFISI=';
     PrismaModule,
     PassportModule,
     JwtModule.register({
-      secret: jwtSecret,
-      signOptions: { expiresIn: '5m' },
+      secret: env.jwt_secret,
+      signOptions: { expiresIn: env.jwt_expiration },
     }),
     UsersModule,
   ],
